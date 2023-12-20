@@ -1,0 +1,4 @@
+name: PhysicsPlugin
+version: '${version}'
+main: me.aneleu.physicsplugin.PhysicsPlugin
+api-version: '1.20'
