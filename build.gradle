@@ -20,6 +20,7 @@ repositories {
 
 dependencies {
     compileOnly "io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT"
+    implementation 'org.apache.commons:commons-math3:3.6.1'
 }
 
 def targetJavaVersion = 17
@@ -53,6 +54,6 @@ jar {
 
 shadowJar {
     relocate 'org.apache.commons', 'me.aneleu.diceplugin.commons'
-    destinationDirectory.set(file(".server/plugins"))
     archiveBaseName.set('DicePlugin')
+    destinationDirectory.set(file('.server/plugins'))
 }
