@@ -9,6 +9,7 @@ import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.EntityType;
 import org.bukkit.util.Transformation;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -36,9 +37,9 @@ public class DisplayObject {
     double[] rightRotation = new double[]{0.7071, 0.7071, 0.7071, Math.toRadians(45)};
     double[] leftRotation = new double[]{0, 0, 1, 0};
     double rotationSpeed = 0;
-    Vector velocity = new Vector(0, 0, 0);
+    Vector velocity = new Vector(1, 0, 0);
 
-    public DisplayObject(Location location, String block) {
+    public DisplayObject(@NotNull Location location, String block) {
         world = location.getWorld();
         location.setPitch(0);
         location.setYaw(0);
@@ -80,6 +81,10 @@ public class DisplayObject {
             Location blockLocation = block.getLocation();
             Vector collisionVector = new Vector(x, y, z).subtract(blockLocation.toVector());
 
+
+            x -= velocity.getX() * tickPerCalculation;
+            y -= velocity.getY() * tickPerCalculation;
+            z -= velocity.getZ() * tickPerCalculation;
 
             if (Math.abs(collisionVector.getX()) < 0.5) {
                 if (Math.abs(collisionVector.getY()) < 0.5) {
